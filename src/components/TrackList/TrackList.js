@@ -8,7 +8,7 @@ function TrackList(props){
                 {props.tracks.map((track)=>{
                     return (
                         <li>
-                        <Track track={track} onAdd={props.onAdd} />
+                        <Track track={track} onAdd={props.onAdd} onRemove={props.onRemove} isRemoval={props.isRemoval} />
                         </li>
                     )
                 })}
