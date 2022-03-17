@@ -15,7 +15,7 @@ function App(props) {
     }
   ]);
 
-  const [playListName, setPlayListName] = useState('');
+  const [playListName, setPlayListName] = useState('My Playlist');
   const [playlistTracks, setPlaylistTracks] = useState([
     {
       id: 2,
@@ -30,8 +30,7 @@ function App(props) {
     if( playlistTracks.find(savedTrack => savedTrack.id === tracks.id)){
       // if found track in playListTracks then break this addTask() function
       return
-    }
-    else{
+    } else {
       // if not found in playlist -> setPlayListTrack 
       setPlaylistTracks(prev =>   ([...prev, tracks])  )
     }   
@@ -44,6 +43,11 @@ function App(props) {
     })
   }
 
+  const updatePlaylistName = ( name ) => {
+    setPlayListName( name );
+    // console.log(name);
+  }
+
   return (
     <div>
       <h1>Ja<span class="highlight">mmm</span>ing</h1>
@@ -51,7 +55,7 @@ function App(props) {
         <SearchBar />
         <div className="App-playlist">
         <SearchResults searchResults={searchResults} onAdd={addTrack} />
-        <Playlist playListName={playListName} playlistTracks={playlistTracks} onRemove={removeTrack}  />
+        <Playlist playListName={playListName} playlistTracks={playlistTracks} onRemove={removeTrack} onNameChange={updatePlaylistName}  />
         </div>
       </div>
     </div>
