@@ -1,5 +1,5 @@
-# Jammming
-# Visit my app here : http://jessada-band.surge.sh/
+# Jammming Visit my app here : http://jessada-band.surge.sh/
+
 
 ## [View in codecademy](https://www.codecademy.com/paths/build-web-apps-with-react/tracks/react-capstone/modules/jammming-capstone/projects/jammming-prj)
 
