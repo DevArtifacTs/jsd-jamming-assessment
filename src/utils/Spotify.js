@@ -7,15 +7,30 @@ let accessToken = undefined;
 let expiresIn = undefined;
 
 const Spotify = {
+
+  // savePlayList(playListName, tracksUri){
+  //   if(!playListName || !tracksUri.length){ 
+  //     return
+  //   }
+  //   accessToken = Spotify.getAccessToken();
+  //   const headers = { Authorization: `Bearer ${accessToken}` }
+  //   let userId ;
+  //   fetch('https://api.spotify.com/v1/me', { headers: headers})
+  //     .then((response=> {response.json()}))
+  //     .then((jsonResponse)=> userId = jsonResponse.id)
+  // },
+
   getAccessToken() {
     if (accessToken) {
       return accessToken;
     }
+    // check for the access token match
     const urlAccessToken = window.location.href.match(/access_token=([^&]*)/);
     const urlExpiresIn = window.location.href.match(/expires_in=([^&]*)/);
     if (urlAccessToken && urlExpiresIn) {
       accessToken = urlAccessToken[1];
       expiresIn = urlExpiresIn[1];
+      // clear parameter
       window.setTimeout(() => (accessToken = ''), expiresIn * 1000);
       window.history.pushState('Access Token', null, '/');
     } else {
@@ -25,6 +40,8 @@ const Spotify = {
 
   async search(term) {
     const searchUrl = `https://api.spotify.com/v1/search?type=track&q=${term.replace(' ', '%20')}`;
+    // accessToken = Spotify.getAccessToken();
+    // const searchUrl = `https://api.spotify.com/v1/search?type=track&q=${term}`;
     return fetch(searchUrl, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -70,7 +87,7 @@ const Spotify = {
             Authorization: `Bearer ${accessToken}`,
           },
           body: JSON.stringify({
-            uris: trackIds.map((id) => 'spotify:track:'.concat(id)),
+            uris: trackIds.map((id) => id),
           }),
         });
       }

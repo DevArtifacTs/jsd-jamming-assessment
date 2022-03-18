@@ -4,15 +4,15 @@ import Track from '../Track/Track';
 function TrackList(props){
     return (
         <div className="TrackList">
-            <ul>
                 {props.tracks.map((track)=>{
                     return (
-                        <li>
-                        <Track track={track} onAdd={props.onAdd} onRemove={props.onRemove} isRemoval={props.isRemoval} />
-                        </li>
+                        <Track  key = {track.id}
+                        track={track} 
+                        onAdd={props.onAdd} 
+                        onRemove={props.onRemove} 
+                        isRemoval={props.isRemoval} />
                     )
                 })}
-            </ul>
         </div>
     );
 }
